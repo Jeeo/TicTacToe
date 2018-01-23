@@ -64,16 +64,16 @@ function miniMax(node, depth) {
     return node.value;  
   }
 
-  if (depth % 2 === 0) {
+  if (depth % 2 !== 0) {
     let a = Number.MAX_SAFE_INTEGER;
-    node.children.forEach( (element) => {
+    node.children.forEach( element => {
       a = Math.min(a, miniMax(element, depth-1))
       return a;
     });  
   }
   else {
     let a = Number.MIN_SAFE_INTEGER;
-    node.children.forEach((element) => {
+    node.children.forEach( element => {
       a = Math.max(a, miniMax(element, depth-1))
       console.log(a)
       return a;
@@ -87,11 +87,13 @@ function isLeaf(node) {
 }
 
 
-function searchTest(depth, node) {
-  if (isLeaf(node) || depth === 0) {
-    return node.board
-  }
-  node.children.forEach( element => searchTest(depth-1, element))
+function searchTest(node, depth) {
+  if(isLeaf(node) || depth == 0) return 
+  node.children.forEach( element => { console.log(element.board)
+    searchTest(element, depth-1);
+    
+  })
+  return
 }
 let a = new tNode;
 
