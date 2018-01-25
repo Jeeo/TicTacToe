@@ -21,7 +21,7 @@ function genTree(depth, node) {
       else {
         n.board[i] = "X";
       }
-      
+
       if( verifyWinner(node.board) ){
         if(calcDepth(node) % 2 !== 0) {
           node.value = 1;
@@ -37,6 +37,14 @@ function genTree(depth, node) {
         
     }
     else {
+      if( verifyWinner(node.board) ){
+        if(calcDepth(node) % 2 !== 0) {
+          node.value = 1;
+        } else {
+          node.value = -1;
+        }
+        return;
+      }
       continue;
     }
     
@@ -69,22 +77,14 @@ function miniMax(node, depth =  calcDepth(node)) {
   if (calcDepth(node) % 2 !== 0) {
     let a = 2;
     node.children.forEach( element => {
-      // console.log("||[Min]depth: "+depth+" a: "+a +"||")
-      // console.log(element)
       a = Math.min(a, miniMax(element, depth-1))  
-      // console.log("********Returning**********")
-      // console.log("[Min]depth: "+depth+" a: "+a)
     });  
     return a;
   }
   else {
     let a = -2;
     node.children.forEach( element => {
-      // console.log("||[Max]depth: "+depth+" a: "+a +"||")
-      // console.log(element)
       a = Math.max(a, miniMax(element, depth-1))
-      // console.log("********Returning**********")
-      // console.log("[Max]depth: "+depth+" a: "+a)
     })
     return a;
   }
@@ -97,7 +97,7 @@ function isLeaf(node) {
 
 function searchTest(node, depth) {
   if( (isLeaf(node) || depth == 0) && node.value === 0 ) {
-    console.log(node)
+    console.log(verifyWinner(node.board))
     return;
   } 
     
