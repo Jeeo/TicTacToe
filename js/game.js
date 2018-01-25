@@ -60,7 +60,8 @@ function runGame(e) {
   playerTurn = !playerTurn;
   
   //from ia.js
-  tree = play(board);
+  if(!playerTurn)
+    iaPlay = play(board);
   
 }
 

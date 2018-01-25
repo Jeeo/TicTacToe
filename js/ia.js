@@ -103,11 +103,22 @@ function calcDepth(node) {
 
 function play(board) {
   let nodeGame = new tNode(board);
+  let max = new tNode();
+  max.value = Number.MIN_SAFE_INTEGER;
   genTree(nodeGame, calcDepth(nodeGame));
-  return nodeGame;
-  nodeGame.children.forEach( (element) => {
 
+  nodeGame.children.forEach((element) => {
+    element.value = miniMax(element, calcDepth(element))
+    max = (element.value > max.value) ? element : max;
   })
+
+  return max;
 
 }
 
+
+function diffArray(arrayOne, arrayTwo) {
+  for(i = 0; i < arrayOne.length; i++) {
+    if(!isNaN(arrayOne[i]) &&   )
+  }
+}
