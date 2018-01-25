@@ -1,7 +1,7 @@
 class tNode  {
   constructor(board) {
     this.children = [];
-    this.board = (board === undefined) ?  Array(9).fill(NaN) : Object.assign({},board);
+    this.board = (board === undefined) ?  Array(9).fill(NaN) : Object.assign([],board);
     this.value = 0;
   }
 }
@@ -117,8 +117,8 @@ function play(board) {
 }
 
 
-function diffArray(arrayOne, arrayTwo) {
-  for(i = 0; i < arrayOne.length; i++) {
-    if(!isNaN(arrayOne[i]) &&   )
-  }
-}
+// function diffArray(arrayOne, arrayTwo) {
+//   for(i = 0; i < arrayOne.length; i++) {
+//     if(!isNaN(arrayOne[i]) && arrayOne[i] !== arrayTwo[i]   )
+//   }
+// }
