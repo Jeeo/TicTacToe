@@ -6,7 +6,7 @@ class tNode  {
   }
 }
 
-function genTree(depth, node) {
+function genTree(node, depth) {
   if (depth < 0 ) {
     return;
   }
@@ -32,7 +32,7 @@ function genTree(depth, node) {
       }
       else{
         node.children.push(n);
-        genTree(depth-1, n);
+        genTree(n, depth-1);
       }
         
     }
@@ -47,42 +47,26 @@ function genTree(depth, node) {
       }
       continue;
     }
-    
   }
   return
 }   
 
-function verifyWinner(board) {
 
-  if( (board[0] === board[1] && board[0] === board[2]) ||
-  (board[3] === board[4] && board[3] === board[5]) ||
-  (board[6] === board[7] && board[6] === board[8]) ||
-  (board[0] === board[3] && board[0] === board[6]) ||
-  (board[1] === board[4] && board[1] === board[7]) ||
-  (board[2] === board[5] && board[2] === board[8]) ||
-  (board[0] === board[4] && board[0] === board[8]) || 
-  (board[2] === board[4] && board[2] === board[6]) ) {
-     return true;
-  }
-       
-  return false;
-}
-
-function miniMax(node, depth =  calcDepth(node)) {
+function miniMax(node, depth = calcDepth(node)) {
 
   if(  isLeaf(node) || depth === 0 ) {
     return node.value;  
   }
 
   if (calcDepth(node) % 2 !== 0) {
-    let a = 2;
+    let a = Number.MAX_SAFE_INTEGER;
     node.children.forEach( element => {
       a = Math.min(a, miniMax(element, depth-1))  
     });  
     return a;
   }
   else {
-    let a = -2;
+    let a = Number.MIN_SAFE_INTEGER;
     node.children.forEach( element => {
       a = Math.max(a, miniMax(element, depth-1))
     })
@@ -95,17 +79,17 @@ function isLeaf(node) {
 }
 
 
-function searchTest(node, depth) {
-  if( (isLeaf(node) || depth == 0) && node.value === 0 ) {
-    console.log(verifyWinner(node.board))
-    return;
-  } 
+// function searchTest(node, depth) {
+//   if( (isLeaf(node) || depth == 0) && node.value === 0 ) {
+//     console.log(verifyWinner(node.board))
+//     return;
+//   } 
     
-  node.children.forEach( element => {
-    searchTest(element, depth-1);
-  })
-  return
-}
+//   node.children.forEach( element => {
+//     searchTest(element, depth-1);
+//   })
+//   return
+// }
 
 function calcDepth(node) {
   let qnt = 0;
@@ -116,6 +100,14 @@ function calcDepth(node) {
   return 9-qnt;
 }
 
-let a = new tNode;
 
-genTree(9, a);
+function play(board) {
+  let nodeGame = new tNode(board);
+  genTree(nodeGame, calcDepth(nodeGame));
+  return nodeGame;
+  nodeGame.children.forEach( (element) => {
+
+  })
+
+}
+
