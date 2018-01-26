@@ -117,8 +117,10 @@ function play(board) {
 }
 
 
-// function diffArray(arrayOne, arrayTwo) {
-//   for(i = 0; i < arrayOne.length; i++) {
-//     if(!isNaN(arrayOne[i]) && arrayOne[i] !== arrayTwo[i]   )
-//   }
-// }
+ function diffArray(arrayOne, arrayTwo) {
+   for(i = 0; i < arrayOne.length; i++) {
+     if(arrayOne[i] !== arrayTwo[i])
+		if(arrayTwo[i])
+		return i
+   }
+}
