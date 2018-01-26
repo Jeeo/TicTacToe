@@ -18,15 +18,10 @@ function runGame(e) {
       turn++;
       if(isEnd())
         return
+      playerTurn = !playerTurn;
+      iaTurn();
     }
-    // else {
-    //   board[e.currentTarget.id] = 'O';
-    //   e.currentTarget.innerHTML = 'O';
-    // }
-    
-    playerTurn = !playerTurn;  
   }
-  iaTurn();
 }
 
 function iaTurn() {

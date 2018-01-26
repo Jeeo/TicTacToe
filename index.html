@@ -25,7 +25,19 @@
       font-size: 15px;
       color: #999;
       border: 1px solid gray;
-      
+    }
+
+    footer {
+      text-align: center;
+      font-size: 10px;
+      color: rgb(133, 133, 133)
+    }
+    footer > a {
+      text-decoration: none;
+    }
+
+    a:visited,a:link{
+      color: black; 
     }
 
     table {
@@ -56,6 +68,7 @@
   </style>
 </head>
 <body>
+
   <header>
     <h1> Impossible Tic-Tac-Toe</h1>
     <p id="winner"> </p>
@@ -71,8 +84,10 @@
   <button id="btn1" onclick="restartGame()"> Restart </button>
   </div>
   
-
-
+  <footer>
+    <hr>
+    built by <a href="https://github.com/Jeeo">Jeeo</a>
+  </footer>
 </body>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
