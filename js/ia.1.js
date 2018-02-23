@@ -123,7 +123,7 @@ function calcDepth(node) {
 
 
 function play(board) {
-  let nodeGame = new tNode(board);
+  const nodeGame = new tNode(board);
   let max = new tNode();
   max.value = Number.MIN_SAFE_INTEGER;
   genTree(nodeGame, calcDepth(nodeGame));
@@ -144,4 +144,23 @@ function play(board) {
 		if(arrayTwo[i])
 		return i
    }
+}
+
+function speedUp(board) {
+  let fplay = new tNode(board);
+
+  fplay.board.find( (e, i)  => { 
+    if(e === 'X'){
+      if( [1,3,4].find( e => { return i === e } )){
+        fplay.board[0] = 'O'
+      } else if( i === 7  ){
+        fplay.board[1] = 'O'
+      } else {
+        fplay.board[4] = 'O'
+      }
+    }
+  })
+
+  return fplay;
+  
 }

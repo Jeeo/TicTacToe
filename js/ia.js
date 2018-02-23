@@ -104,7 +104,7 @@ function calcDepth(node) {
 
 
 function play(board) {
-  let nodeGame = new tNode(board);
+  const nodeGame = new tNode(board);
   let max = new tNode();
   max.value = Number.MIN_SAFE_INTEGER;
   genTree(nodeGame, calcDepth(nodeGame));

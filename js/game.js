@@ -24,8 +24,14 @@ function runGame(e) {
 }
 
 function iaTurn() {
-  //play() from ia.js
-  iaPlay = play(board);
+  if(turn === 1) {
+    //speedUp from ia.js
+    iaPlay = speedUp(board)
+  } else {
+    //play() from ia.js
+    iaPlay = play(board);
+  }
+  
   let index = diffArray(board, iaPlay.board);
   board[index] = 'O';
   blocks[index].innerHTML = 'O';
