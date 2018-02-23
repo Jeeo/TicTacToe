@@ -1,4 +1,4 @@
-//Code without alpha-beta pruning
+//Code with alpha-beta pruning
 
 class tNode  {
   constructor(board) {
@@ -54,7 +54,7 @@ function genTree(node, depth) {
 }   
 
 
-function miniMax(node, depth = calcDepth(node)) {
+function miniMax(node, depth = calcDepth(node), alpha = Number.MIN_SAFE_INTEGER, beta = Number.MAX_SAFE_INTEGER) {
 
   if(  isLeaf(node) || depth === 0 ) {
     return node.value;  
@@ -62,15 +62,34 @@ function miniMax(node, depth = calcDepth(node)) {
 
   if (calcDepth(node) % 2 !== 0) {
     let a = Number.MAX_SAFE_INTEGER;
-    node.children.forEach( element => {
-      a = Math.min(a, miniMax(element, depth-1))  
+    node.children.every( element => {
+      a = Math.min(a, miniMax(element, depth-1, alpha, beta))
+      //alpha-beta pruning
+      beta = Math.min(beta, a);
+      if( beta <= alpha ){
+        //break functional version
+        return false
+      }
+      else {
+        return true
+      }
+          
     });  
     return a;
   }
   else {
     let a = Number.MIN_SAFE_INTEGER;
-    node.children.forEach( element => {
-      a = Math.max(a, miniMax(element, depth-1))
+    node.children.every( element => {
+      a = Math.max(a, miniMax(element, depth-1, alpha, beta))
+      alpha = Math.max(alpha, a);
+      //alpha-beta pruning
+      if (alpha >= beta) {
+        //break functional version
+        return false
+      }
+      else {
+        return true
+      }
     })
     return a;
   }

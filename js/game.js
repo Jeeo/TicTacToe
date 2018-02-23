@@ -1,4 +1,3 @@
-
 let filler = NaN;
 let playerTurn = true;
 let blocks = $('td');
